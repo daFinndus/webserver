@@ -10,25 +10,55 @@ body {
     align-items: center;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    background-color: rgb(238, 238, 238, 0.75);
+    box-shadow: #eeeeee 0 0 10px 0;
+}
+
+#image {
+    width: 70%;
+    border-radius: 16px 0 0 16px;
+}
+
 .center {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 30px;
 }
 
 #title {
-    color: #eeeeee;
+    text-shadow: black 0 0 5px;
+    color: #2f2f2f;
     font-size: 3em;
     text-align: center;
 }
 
-#input, #button {
+#name, #email, #submit {
     min-width: 15rem;
     color: #eeeeee;
     background-color: #2f2f2f;
     border: none;
+    border-radius: 8px;
     margin: 0 0 1rem 0;
     padding: 0.5rem;
     font-size: 1em;
+    font-weight: bold;
     text-align: center;
+    transition: background-color 1s ease, box-shadow 1s ease, color 1s ease;
+}
+
+#name:focus, #email:focus {
+    outline: none;
+    box-shadow: 0 0 5px 0 #2f2f2f;
+}
+
+#submit:hover {
+    color: #2f2f2f;
+    box-shadow: #2f2f2f 0 0 10px 0;
+    background-color: #cbcbcb;
 }
 
