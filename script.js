@@ -1,6 +1,7 @@
 addEventListener('DOMContentLoaded', () => {
     console.log('Hello from script.js');
 
+    // TODO: Error in Chrome and Safari
     document.getElementById('submit').addEventListener('click', () => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
@@ -18,7 +19,7 @@ addEventListener('DOMContentLoaded', () => {
                     document.getElementById('email').value = '';
                 })
                 .catch(error => {
-                    console.error('Error fetching url:', error);
+                    console.error('Error fetching URL:', error);
                     alert('Error while fetching URL');
                 });
         } else {
