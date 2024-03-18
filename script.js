@@ -7,7 +7,7 @@ addEventListener('DOMContentLoaded', () => {
 
         // If the input is not empty, send a response to the server
         if (name && email) {
-            fetch('http://localhost:3000/upload?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email))
+            fetch('https://localhost:3000/upload?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email))
                 .then(response => response.text())
                 .then(message => {
                     console.log('Response from server:', message);
