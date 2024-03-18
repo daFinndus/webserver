@@ -1,7 +1,6 @@
 addEventListener('DOMContentLoaded', () => {
     console.log('Hello from script.js');
-
-    // TODO: Error in Chrome and Safari
+    
     document.getElementById('submit').addEventListener('click', () => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;

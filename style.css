@@ -11,9 +11,10 @@ body {
 }
 
 .row {
-    width: 800px;
+    width: 1000px;
     height: 600px;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     border-radius: 16px;
     background-color: rgb(238, 238, 238, 0.75);
@@ -22,38 +23,44 @@ body {
 
 #image {
     width: 60%;
+    min-width: 600px;;
     border-radius: 16px 0 0 16px;
+
+
 }
 
 .center {
-    height: 600px;
+    width: 40%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 30px;
 }
 
 #title {
     text-shadow: black 0 0 5px;
-    color: #2f2f2f;
+    color: #eeeeee;
     font-size: 3em;
     text-align: center;
 }
 
 #description {
     text-shadow: black 0 0 5px;
-    color: #2f2f2f;
+    color: #eeeeee;
     font-size: 1em;
     text-align: center;
     margin: -2rem 0 3rem 0;
 }
 
 #name, #email, #submit {
-    min-width: 15rem;
+    width: 340px;
     color: #eeeeee;
     background-color: #2f2f2f;
     border: none;
     border-radius: 8px;
+    box-sizing: border-box;
     margin: 0 0 1rem 0;
     padding: 0.5rem;
     font-size: 1em;
