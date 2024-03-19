@@ -59,6 +59,7 @@ app.get('/upload', (req, res) => {
 });
 
 // Create HTTPS server
+// For security reasons, this will not be safe enough for Safari
 const server = https.createServer(options, app);
 
 server.listen(port, () => {

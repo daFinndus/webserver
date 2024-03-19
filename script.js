@@ -1,6 +1,6 @@
 addEventListener('DOMContentLoaded', () => {
     console.log('Hello from script.js');
-    
+
     document.getElementById('submit').addEventListener('click', () => {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;

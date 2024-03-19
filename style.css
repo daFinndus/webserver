@@ -23,10 +23,8 @@ body {
 
 #image {
     width: 60%;
-    min-width: 600px;;
+    min-width: 600px;
     border-radius: 16px 0 0 16px;
-
-
 }
 
 .center {
@@ -54,7 +52,9 @@ body {
     margin: -2rem 0 3rem 0;
 }
 
-#name, #email, #submit {
+#name,
+#email,
+#submit {
     width: 340px;
     color: #eeeeee;
     background-color: #2f2f2f;
@@ -69,7 +69,8 @@ body {
     transition: background-color 1s ease, box-shadow 1s ease, color 1s ease;
 }
 
-#name:focus, #email:focus {
+#name:focus,
+#email:focus {
     outline: none;
     box-shadow: 0 0 5px 0 #2f2f2f;
 }
@@ -79,4 +80,3 @@ body {
     box-shadow: #2f2f2f 0 0 10px 0;
     background-color: #cbcbcb;
 }
-
