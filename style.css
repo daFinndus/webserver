@@ -66,6 +66,7 @@ body {
     font-size: 1em;
     font-weight: bold;
     text-align: center;
+    -moz-appearance: textfield;
     transition: background-color 1s ease, box-shadow 1s ease, color 1s ease;
 }
 

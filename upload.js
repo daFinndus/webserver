@@ -25,7 +25,7 @@ app.get('/upload', (req, res) => {
     const email = req.query.email;
 
     const tableQuery = 'CREATE TABLE IF NOT EXISTS users (name VARCHAR(255), email VARCHAR(255))';
-    const insertQuery = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    const insertQuery = 'INSERT INTO users (name, email, age) VALUES (?, ?)';
 
 
     // Create a new user table if it does not exist
