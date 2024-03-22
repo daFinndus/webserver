@@ -4,23 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Webserver</title>
-    <link rel="stylesheet" href="../style.css">
-    <script defer src="../script.js"></script>
+    <link rel="icon" type="image/x-icon" href="https://source.unsplash.com/random/30x30">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
-    <div id="container">
-        <div class="row">
-            <img loading="eager" alt="" src="https://source.unsplash.com/random/600x600" id="image">
-            <div class="center">
-                <h1 id="title">Webserver</h1>
-                <h3 id="description">Very secure company</h3>
-                <label for="name"><input id="name" autocomplete="off" name="name" placeholder="Enter name"></label>
-                <label for="email"><input id="email" autocomplete="off" name="email" type="email" placeholder="Enter email"></label>
-                <button id="submit">Submit</button>
-            </div>
+<div id="container">
+    <div class="row">
+        <img loading="eager" alt="" src="https://source.unsplash.com/random/600x600" id="image">
+        <div class="center">
+            <h1 id="title">Webserver</h1>
+            <h3 id="description">Very secure company</h3>
+            <form id="form">
+                <label for="name">
+                    <input type="text" name="name" id="name" placeholder="Name" required>
+                </label>
+                <label for="email">
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </label>
+                <button id="submit" type="submit">Submit</button>
+            </form>
         </div>
     </div>
+</div>
 </body>
 
 </html>

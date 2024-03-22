@@ -1,35 +1,39 @@
 addEventListener('DOMContentLoaded', () => {
+    clearFields();
     console.log('Hello from script.js');
 
-    document.getElementById('submit').addEventListener('click', () => {
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
+    document.getElementById('form').addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-        // If the input is not empty, send a response to the server
+        const data = new FormData(this);
+        console.log('Form submitted with following data:', data);
 
-            if (name && email) {
-                fetch('https://localhost:3000/upload?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email))
-                    .then(response => response.text())
-                    .then(message => {
-                        console.log('Response from server:', message);
-                        alert(message);
+        // Send the form data to the server
+        await fetch('/upload', {
+            method: 'POST',
+            body: data,
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                alert('Data uploaded successfully');
+                return response.text();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                alert('Error uploading data')
+                console.error('Error:', error);
+            });
 
-                        // Clear the input fields
-                        clearFields();
-                    })
-                    .catch(error => {
-                        console.error('Error fetching URL:', error);
-                        alert('Error while fetching URL');
-                    });
-            } else {
-                alert('Please fill out all fields');
-                clearFields();
-
-            }
+        // Clear the fields after the form has been submitted
+        clearFields();
     });
 });
 
+// Function for clearing the necessary fields
 clearFields = () => {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
+    console.log('Fields cleared');
 }

@@ -1,18 +1,25 @@
+const bodyParser = require('body-parser');
 const express = require('express');
+const multer = require('multer');
 const mysql = require('mysql');
 const https = require('https');
-const cors = require('cors');
 const fs = require('fs');
+const form = multer();
 
 const app = express();
 const port = 3000;
 
+// Options for our SSL-certificate
 const options = {
-    key: fs.readFileSync('ssl/server.key'), cert: fs.readFileSync('ssl/server.crt')
+    key: fs.readFileSync('ssl/server.key'), cert: fs.readFileSync('ssl/server.crt'),
 };
 
-// Allow cross-origin requests
-app.use(cors());
+// Serve the index.html file
+app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
+app.use(express.static(__dirname));
+app.use(bodyParser.json());
+app.use(form.array());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Create a connection to the database
 const connection = mysql.createConnection({
@@ -20,48 +27,33 @@ const connection = mysql.createConnection({
 });
 
 // Request dbName query to create a new table in the database
-app.get('/upload', (req, res) => {
-    const name = req.query.name;
-    const email = req.query.email;
+app.post('/upload', (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
 
-    const tableQuery = 'CREATE TABLE IF NOT EXISTS users (name VARCHAR(255), email VARCHAR(255))';
-    const insertQuery = 'INSERT INTO users (name, email, age) VALUES (?, ?)';
+    console.log("Got data from the form:", name, email);
 
+    const insertQuery = 'INSERT INTO users (name, email) VALUES (?, ?)';
 
-    // Create a new user table if it does not exist
-    connection.query(tableQuery, (error) => {
-        if (error) {
-            console.error('Error creating table:', error);
-            res.status(500).send('Error creating table');
-        }
-    });
-
-    // Insert the new table into the database using prepared statements
     connection.query(insertQuery, [name, email], (error, results) => {
         if (error) {
-            console.error('Error whilst loading:', error);
-            console.error('Got following results:', results);
-            res.status(500).send('Error inserting into database');
+            console.error('Error inserting data into database:', error);
+            res.status(500).send('Error inserting data into database');
             return;
         }
-        // Send an OK response if the query was successful
-        res.send('Successfully uploaded data into database');
+        res.send('Data uploaded successfully');
+    });
 
-        // Save our uploaded data in data.txt - creating it, if it does not exist
-        fs.appendFile('data.txt', `Name: ${name}, Email: ${email}\n`, (error) => {
-            if (error) {
-                console.error('Error writing to file:', error);
-                return;
-            }
-            console.log('Successfully wrote to file');
-        });
+    fs.appendFile('users.txt', `${name}, ${email}\n`, (error) => {
+        if (error) {
+            console.error('Error writing to file:', error);
+            return;
+        }
+        console.log('Data written to file');
     });
 });
 
 // Create HTTPS server
-// For security reasons, this will not be safe enough for Safari
-const server = https.createServer(options, app);
-
-server.listen(port, () => {
+https.createServer(options, app).listen(port, () => {
     console.log(`Server running on https://localhost:${port}`);
 });
