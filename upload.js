@@ -30,12 +30,15 @@ const connection = mysql.createConnection({
 app.post('/upload', (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
+    const age = req.body.age;
 
-    console.log("Got data from the form:", name, email);
+    console.log("Got data from the form:", name, email, age);
 
-    const insertQuery = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    const tableQuery = 'CREATE TABLE IF NOT EXISTS users (name VARCHAR(255), email VARCHAR(255), age INT)';
+    const insertQuery = 'INSERT INTO users (name, email, age) VALUES (?, ?, ?)';
 
-    connection.query(insertQuery, [name, email], (error, results) => {
+    connection.query(tableQuery);
+    connection.query(insertQuery, [name, email, age], (error, results) => {
         if (error) {
             console.error('Error inserting data into database:', error);
             res.status(500).send('Error inserting data into database');
@@ -44,7 +47,7 @@ app.post('/upload', (req, res) => {
         res.send('Data uploaded successfully');
     });
 
-    fs.appendFile('users.txt', `${name}, ${email}\n`, (error) => {
+    fs.appendFile('users.txt', `${name}, ${email}, ${age}\n`, (error) => {
         if (error) {
             console.error('Error writing to file:', error);
             return;

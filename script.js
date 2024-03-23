@@ -35,5 +35,6 @@ addEventListener('DOMContentLoaded', () => {
 clearFields = () => {
     document.getElementById('name').value = '';
     document.getElementById('email').value = '';
+    document.getElementById('age').value = '';
     console.log('Fields cleared');
 }

@@ -54,6 +54,7 @@ body {
 
 #name,
 #email,
+#age,
 #submit {
     width: 340px;
     color: #eeeeee;
@@ -71,6 +72,7 @@ body {
 }
 
 #name:focus,
+#age:focus,
 #email:focus {
     outline: none;
     box-shadow: 0 0 5px 0 #2f2f2f;
