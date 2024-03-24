@@ -18,7 +18,6 @@ const options = {
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
-app.use(form.array());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Create a connection to the database
